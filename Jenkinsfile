@@ -35,5 +35,15 @@ pipeline {
                 echo 'Released to prod...'
             }
         }
+        stage('Report') {
+            steps {
+                sh "printf \"${params.BUILD_TOOL}\" > ${params.BUILD_TOOL}.txt"
+                archiveArtifacts allowEmptyArchive: true, 
+                    artifacts: '*.txt',
+                    fingerprint: true,
+                    followSymlinks: false,
+                    onlyIfSuccessful: true
+            }
+        }
     }
 }
