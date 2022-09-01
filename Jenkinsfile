@@ -8,9 +8,25 @@ pipeline {
         }
     
     stages {
-        stage('Test') {
+        stage('Build with Maven') {
+            when {
+                expression {
+                    params.BUILD_TOOL == 'MAVEN'
+                }
+            }
             steps {
-                echo 'Testing...'
+                echo 'Maven build...'
+            }
+        }
+        
+        stage('Build with Gradle') {
+            when {
+                expression {
+                    params.BUILD_TOOL == 'GRADLE'
+                }
+            }
+            steps {
+                echo 'Gradle build...'
             }
         }
     }
