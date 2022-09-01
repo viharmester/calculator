@@ -29,5 +29,11 @@ pipeline {
                 echo 'Gradle build...'
             }
         }
+        
+        stage('Release to prod') {
+            steps {
+                echo 'Released to prod...'
+            }
+        }
     }
 }
